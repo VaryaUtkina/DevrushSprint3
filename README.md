@@ -12,7 +12,7 @@ Animation has been added to the Flag game. Now you can see how the selected flag
 ## Challenge: LernToMultiply
 A game that will help you learn the multiplication table. Specify the number of questions and the maximum number for which the multiplication table will be provided in the game. Animal images and animations make the game more fun!
 <p align="center">
-  <img src="https://github.com/VaryaUtkina/DevrushSprint3/blob/107c07c4847be847aecbbace05c2ee2142bdd4e3/assets/LearnToMultiply.gif" alt="Challenge: LernToMultiply" width="250">
+  <img src="https://github.com/VaryaUtkina/DevrushSprint3/blob/2501ab9124d74ac3e7005047c6162201884d1f21/assets/LearnToMultiply.gif" alt="Challenge: LernToMultiply" width="250">
 </p>
 
 ## Project 7: iExpense
