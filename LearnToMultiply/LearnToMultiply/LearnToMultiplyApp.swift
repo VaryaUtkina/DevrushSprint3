@@ -11,7 +11,7 @@ import SwiftUI
 struct LearnToMultiplyApp: App {
     var body: some Scene {
         WindowGroup {
-            PlayView()
+            ContentView()
         }
     }
 }

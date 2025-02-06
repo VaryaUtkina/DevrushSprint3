@@ -11,42 +11,82 @@ struct ContentView: View {
     @State private var multiplyTable = 12
     @State private var numberOfQuestion = 5
     
+    @State private var isShowingPlayView = false
+    @State private var showContent = false
+    @State private var animationAmount = 0.0
+    
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.indigo, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            BackgroundView()
             
-            VStack(spacing: 50) {
-                VStack(spacing: 20) {
-                    Text("Which multiplication tables you want to practice?")
-                        .font(.title3.bold())
-                        .multilineTextAlignment(.center)
-                    Stepper("Up to... \(multiplyTable)", value: $multiplyTable, in: 2...12, step: 1)
-                    
-                    Text("How many questions you want to be asked?")
-                        .font(.title3.bold())
-                        .multilineTextAlignment(.center)
-                    Picker("", selection: $numberOfQuestion) {
-                        ForEach([5, 10, 20], id: \.self) { number in
-                            Text("\(number) questions")
+            VStack(spacing: 20) {
+                Spacer()
+                
+                if showContent {
+                    Image("zebra")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .transition(.scale.combined(with: .opacity))
+                        .animation(.easeIn(duration: 0.6), value: showContent)
+                        .rotation3DEffect(.degrees(animationAmount), axis: (x: 1, y: 0, z: 0))
+                }
+                
+                if showContent {
+                    VStack(spacing: 50) {
+                        VStack(spacing: 20) {
+                            CustomQuestionView(text: "Which multiplication tables you want to practice?")
+                            
+                            Stepper("Up to... \(multiplyTable)", value: $multiplyTable, in: 2...12, step: 1)
+                                .foregroundStyle(.darkBlue ?? .blue)
+                                .bold()
+                            
+                            CustomQuestionView(text: "How many questions you want to be asked?")
+                            
+                            Picker("", selection: $numberOfQuestion) {
+                                ForEach([5, 10, 20], id: \.self) { number in
+                                    Text("\(number) questions")
+                                }
+                            }
+                            .pickerStyle(.segmented)
+                        }
+                        .padding(.horizontal, 16)
+                        
+                        CustomButtonView(title: "PLAY") {
+                            withAnimation {
+                                animationAmount += 360
+                            }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                                isShowingPlayView = true
+                            }
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .padding(16)
+                    .frame(height: 450)
+                    .background(.ultraThinMaterial)
+                    .clipShape(.rect(cornerRadius: 70))
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .animation(.easeIn(duration: 0.8), value: showContent)
                 }
-                .padding(.horizontal, 16)
                 
-                Button("PLAY") {
-                    
-                }
-                .font(.largeTitle.bold())
-                .frame(width: 300, height: 100)
-                .background(.blue)
-                .foregroundStyle(.white)
-                .clipShape(.rect(cornerRadius: 40))
+                Spacer()
+                Spacer()
             }
-            .frame(width: .infinity, height: 400)
-            .background(.ultraThinMaterial)
-            .clipShape(.rect(cornerRadius: 70))
+        }
+        .fullScreenCover(isPresented: $isShowingPlayView) {
+            PlayView(
+                multiplyTable: $multiplyTable,
+                numberOfQuestion: $numberOfQuestion,
+                onDismiss: {
+                    isShowingPlayView = false
+                }
+            )
+        }
+        .onAppear {
+            withAnimation {
+                showContent = true
+            }
         }
     }
 }
