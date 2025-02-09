@@ -1,6 +1,6 @@
 # Sprint 3
 - [Project 6: Work with animation](#project-6-work-with-animation)
-- [Challenge: LernToMultiply](#challenge-lerntomultiply)
+- [Challenge: LearnToMultiply](#challenge-learntomultiply)
 - [Project 7: iExpense](#project-7-iexpense)
 - [Project 8: Moonshot](#project-8-moonshot)
 
@@ -10,7 +10,7 @@ Animation has been added to the Flag game. Now you can see how the selected flag
   <img src="https://github.com/VaryaUtkina/DevrushSprint3/blob/b5feaf27e17e7b4498fee2d3a0342f2dfe35e745/assets/Project%206.gif" alt="Project 6 GIF" width="250">
 </p>
 
-## Challenge: LernToMultiply
+## Challenge: LearnToMultiply
 A game that will help you learn the multiplication table. Specify the number of questions and the maximum number for which the multiplication table will be provided in the game. Animal images and animations make the game more fun!
 <p align="center">
   <img src="https://github.com/VaryaUtkina/DevrushSprint3/blob/2501ab9124d74ac3e7005047c6162201884d1f21/assets/LearnToMultiply.gif" alt="Challenge: LernToMultiply" width="250">
